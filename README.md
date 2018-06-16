@@ -1,2 +1,2 @@
 # Universty-Product
-A small website for serving websites for universty students
+A small website for serving websits for universty students
