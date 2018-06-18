@@ -4,7 +4,6 @@ import {routes} from './constant'
 import {Switch, Route} from 'react-router-dom'
 
 
-
 export default class Project extends Component {
     render() {
         return (

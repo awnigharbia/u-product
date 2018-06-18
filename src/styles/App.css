@@ -462,6 +462,10 @@
 }
 
 .project-form .btn-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     padding:10px 0px;
     width: 100%;
     box-shadow: 0px 5px 10px rgb(170, 183, 233);
@@ -473,6 +477,18 @@
     font-size:18px;
     outline:none;
     transition: .05s linear;
+}
+
+.project-form .btn-form img {
+    width:25px;
+}
+
+.success {
+    background-color: rgb(80, 211, 80) !important;
+}
+
+.error {
+    background-color: rgb(204, 71, 71) !important;
 }
 
 .project-form .select-lang {

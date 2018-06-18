@@ -1,18 +1,20 @@
 // Components
-import App from './App'
-import NavBar from './nav';
+import App from './mainPage/App'
+import NavBar from './mainPage/nav';
 import Link from './Link'
 import { NavItems, routes } from './constant'
 import Style from '../styles/App.css'
-import NavbarContainer from './NavbarContainer'
-import Logo from './Logo'
-import LeftSide from './LeftSide'
-import RightSide from './RightSide'
-import FeaturesContainer from './FeaturesContainer'
-import LanguageContainer from './languageContainer'
-import AboutUs from './aboutUs'
-import CreateProject from './createProject'
+import NavbarContainer from './mainPage/NavbarContainer'
+import Logo from './mainPage/Logo'
+import LeftSide from './mainPage/LeftSide'
+import RightSide from './mainPage/RightSide'
+import FeaturesContainer from './mainPage/FeaturesContainer'
+import LanguageContainer from './mainPage/languageContainer'
+import AboutUs from './mainPage/aboutUs'
+import CreateProject from './createProject/createProject'
 import Project from './project' 
+import SelectLang from './createProject/selectLang'
+import BtnContainer from './createProject/btnContainer'
 
 // icons 
 import Home from '../imgs/h-i.svg'
@@ -35,6 +37,9 @@ import beg from '../imgs/beg.svg'
 import downArrow from '../imgs/d-ar.svg'
 import Js from '../imgs/js-i.svg'
 import Php from '../imgs/php-i.svg'
+import Loader from '../imgs/loader.svg'
+import success from '../imgs/success.svg'
+import error from '../imgs/error.svg'
 
 export  {
     App,
@@ -72,5 +77,9 @@ export  {
     downArrow,
     Js,
     Php,
-    
+    SelectLang,   
+    BtnContainer,
+    Loader,
+    success,
+    error,
 }
