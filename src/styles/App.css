@@ -15,7 +15,12 @@
     box-shadow:0 2px 4px rgba(0, 0, 0, 0.26), 0 -1px 1px rgba(0, 0, 0, 0.81);
 }
 
-.top {
+.full-height {
+    height: 100% !important;
+}
+
+
+.top, .content-wrapper {
     height: 100%;
     background-color: rgba(244, 244, 253, 0.945);
 }
@@ -193,6 +198,7 @@
     animation-play-state: running;
 }
 
+
 @keyframes fade {
     0% {
         left: -55px;
@@ -238,8 +244,8 @@
     margin-left: -150px;
     z-index: 2;
     box-shadow: 0px 3px 9px #d4dce4;
-    transition-duration: .07s;
-    transition-timing-function: linear;
+    transition-duration: .1s;
+    transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
 .right-side .p-form  .s-p-b:hover {
@@ -408,4 +414,165 @@
 .about-us-wrapper .about-us .info p {
     color:white;
     font-size:13px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-logo {
+    width:200px;
+}
+
+.top-logo img {
+    width:100%;
+}
+
+.project-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:30%;
+}
+
+.project-form .input-form {
+    padding:13px 20px;
+    width:100%;
+    border:none;
+    border-radius: 3px;
+    outline:none;
+    font-size:14px;
+    box-shadow: 0px 3px 9px #d4dce4;
+    margin-top: 10px;
+    transition:.1s linear;
+    resize: none;
+}
+
+.project-form .input-form:focus {
+    box-shadow: 0px 5px 20px #c1c9d0;
+}
+
+.project-form .select-lang:hover {
+    box-shadow: 0px 5px 20px #c1c9d0;
+    color:black;
+}
+
+.project-form .btn-form {
+    padding:10px 0px;
+    width: 100%;
+    box-shadow: 0px 5px 10px rgb(170, 183, 233);
+    border:none;
+    background-color: #7A8FDF;
+    border-radius: 3px;
+    margin-top: 10px;
+    color:white;
+    font-size:18px;
+    outline:none;
+    transition: .05s linear;
+}
+
+.project-form .select-lang {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    margin-top: 10px;
+    padding:13px 20px;
+    background-color: #fff;
+    box-shadow: 0px 3px 9px #d4dce4;
+    border-radius: 3px;
+    outline:none;
+    font-size:14px;
+    user-select: none;
+    transition:.1s linear;
+    color:rgba(0, 0, 0, 0.61);
+}
+
+.project-form .select-lang .top-select {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-form .select-lang .top-select p {
+    margin: 0px;
+    padding:0px;
+}
+
+#down-arrow {
+    width:20px;
+    margin-right: -8px;
+    pointer-events: none;
+  }
+
+.project-form .btn-form:hover {
+    box-shadow: -1px 10px 20px rgb(170, 183, 233);
+}
+
+.project-form .select-lang .drop-lang {
+    position: absolute;
+    top: 47px;
+    left:0;
+    display: flex;
+    box-shadow: 0px 3px 9px #a3a9af;
+    flex-direction: column;
+    background-color: #fff;
+    width:100%;
+}
+
+.project-form .select-lang .drop-lang .drop-lang-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding:0px 20px;
+    width:100%;
+    border-top:1px solid lightgray;
+    box-sizing: border-box;
+    transform: .1s linear;
+}
+
+.project-form .select-lang .drop-lang .drop-lang-item:hover {
+    background-color: rgba(192, 192, 192, 0.178);
+}
+
+.project-form .select-lang .drop-lang .drop-lang-item img {
+    width:20px;
+}
+
+.project-form .select-lang .drop-lang .drop-lang-item p {
+    margin-left: 10px;
+}
+
+.project-form .state {
+    position: absolute;
+    left: -60px;
+    width:30px;
+    opacity: 1;
+    animation-name: fadeS;
+    animation-delay: 0;
+    animation-duration: .1s;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+@keyframes fadeS {
+    0% {
+      left:-70px;
+    } 100% {
+      left:-60px;
+    }
+}
+
+.down-arr {
+    transform: rotate(90deg);
+    transition:.2s linear;
+}
+
+.back-arr {
+    transform: rotate(0deg);
+    transition:.2s linear;
 }

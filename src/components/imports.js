@@ -32,7 +32,9 @@ import strong from '../imgs/strong.svg'
 import positive from '../imgs/positive.svg'
 import like from '../imgs/like.svg'
 import beg from '../imgs/beg.svg'
-
+import downArrow from '../imgs/d-ar.svg'
+import Js from '../imgs/js-i.svg'
+import Php from '../imgs/php-i.svg'
 
 export  {
     App,
@@ -66,5 +68,9 @@ export  {
     write,
     clapping,
     CreateProject,
-    Project
+    Project,
+    downArrow,
+    Js,
+    Php,
+    
 }

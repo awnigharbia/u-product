@@ -20,11 +20,13 @@ import Php from '../imgs/php-i.svg'
 
 export const routes = [
     {
+      key:0,
       path:'/',
       exact:true,
       component: () => <App />
     },
     {
+      key:1,
       path:'/create-project',
       exact:false,
       component:() => <CreateProject />

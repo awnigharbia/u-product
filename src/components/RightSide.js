@@ -56,6 +56,10 @@ export default class RightSide extends Component {
     componentDidMount() {
         this.timer = null;
     }
+    
+    componentWillUnmount() {
+        clearTimeout(this.timer)
+    }
 
     render() {
         const { show, currentState, nameInput, top, lang} = this.state
@@ -68,7 +72,7 @@ export default class RightSide extends Component {
                     <div className="input-form">
                         <div className="input-form-container">
                             { show && 
-                                <div className='state' style={{top:top}}>
+                                <div className='state left-move' style={{top:top}}>
                                     <img src={currentState} alt={select} />
                                 </div>
                             }
