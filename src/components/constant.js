@@ -3,6 +3,7 @@ import {
   App,
   CreateProject,
   FinishForm,
+  LockedStatus,
 } from '.'
 
 import Home from '../imgs/h-i.svg'
@@ -37,6 +38,12 @@ export const routes = [
       path:'/finished',
       exact:false,
       component:() => <FinishForm />
+    },
+    {
+      key:3,
+      path:'/project/project-status-locked',
+      exact:false,
+      component:() => <LockedStatus />
     }
   ]
 
