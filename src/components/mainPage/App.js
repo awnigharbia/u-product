@@ -9,7 +9,7 @@ import { NavBar,
          FeaturesContainer,
          LanguageContainer,
          AboutUs
-        } from '../imports'
+        } from '..'
 
 export default class App extends Component {
   render() {

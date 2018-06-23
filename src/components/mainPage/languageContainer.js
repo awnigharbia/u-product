@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Styles} from '../imports'
+import {Styles} from '..'
 import {Languages} from '../constant'
 
 export default class LanguageContainer extends Component {

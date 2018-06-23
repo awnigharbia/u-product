@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import {
     Styles,
     Link,
-    NavItems,
     NavbarContainer
-} from '../imports'
-
+} from '..'
+import { NavItems } from '../constant'
 
 export default class NavBar extends Component {
     render() {

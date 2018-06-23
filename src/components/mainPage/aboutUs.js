@@ -5,7 +5,7 @@ import {
     Fb,
     tw,
     Ld,
-} from '../imports'
+} from '..'
 
 
 

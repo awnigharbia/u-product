@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Styles, Loader, success, error} from '../imports'
+import {Styles, Loader, success, error} from '..'
 
 const BtnContainer = Btn =>
     class extends Component {

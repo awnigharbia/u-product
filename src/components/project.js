@@ -1,5 +1,5 @@
 import React, {Component } from 'react'
-import {Styles, App, CreateProject} from './imports'
+import {Styles, App, CreateProject} from '.'
 import {routes} from './constant'
 import {Switch, Route} from 'react-router-dom'
 

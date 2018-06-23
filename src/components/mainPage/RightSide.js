@@ -9,7 +9,7 @@ import {Style,
         clapping,
         select,
         positive,
-    } from '../imports'
+    } from '..'
 
 export default class RightSide extends Component {
     state = {

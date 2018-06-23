@@ -12,7 +12,8 @@ import {
     positive,
     SelectLang,
     BtnContainer,
-    } from '../imports'
+    BackWrapper,
+    } from '..'
 
 export default class CreateProject extends Component {
     state = {
@@ -75,9 +76,7 @@ export default class CreateProject extends Component {
         const {selectValue, top, show, email, city, un, password, lang, description, currentState} = this.state
 
         return (
-            <div className='app-wrapper'>
-                <div className="top-wrapper full-height">
-                    <div className="content-wrapper">
+            <BackWrapper>
                         <div className="top-logo">
                             <img src={logo} alt={logo} />
                         </div>
@@ -134,9 +133,7 @@ export default class CreateProject extends Component {
 
                             <BtnContainer state='init' /> 
                         </div>
-                    </div>
-                </div>
-            </div>
+                </BackWrapper>
         )
     }
 }

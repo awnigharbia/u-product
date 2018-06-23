@@ -1,8 +1,9 @@
 import React from 'react'
 import {
   App,
-  CreateProject
-} from './imports'
+  CreateProject,
+  FinishForm,
+} from '.'
 
 import Home from '../imgs/h-i.svg'
 import HowTo from '../imgs/i-i.svg'
@@ -30,6 +31,12 @@ export const routes = [
       path:'/create-project',
       exact:false,
       component:() => <CreateProject />
+    },
+    {
+      key:2,
+      path:'/finished',
+      exact:false,
+      component:() => <FinishForm />
     }
   ]
 

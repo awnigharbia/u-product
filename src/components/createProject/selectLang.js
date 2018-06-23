@@ -3,7 +3,7 @@ import {Styles,
         Js,
         Php,
         downArrow,
-       } from '../imports'
+       } from '..'
 import ReactDOM from 'react-dom'
 
 

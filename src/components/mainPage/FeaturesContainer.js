@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Styles} from '../imports'
+import {Styles} from '..'
 import {Features} from '../constant'
 
 
