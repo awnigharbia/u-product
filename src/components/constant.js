@@ -4,6 +4,7 @@ import {
   CreateProject,
   FinishForm,
   LockedStatus,
+  NotFound,
 } from '.'
 
 import Home from '../imgs/h-i.svg'
@@ -44,6 +45,12 @@ export const routes = [
       path:'/project/project-status-locked',
       exact:false,
       component:() => <LockedStatus />
+    },
+    {
+      key:4,
+      path:'*',
+      exact:false,
+      component:() => <NotFound />
     }
   ]
 

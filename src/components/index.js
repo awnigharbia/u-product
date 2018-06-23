@@ -17,6 +17,7 @@ export { default as BtnContainer } from "./createProject/btnContainer"
 export { default as FinishForm } from "./createProject/finishForm"
 export { default as BackWrapper } from "./mainPage/backWrapper"
 export { default as LockedStatus } from './projectStatus/lockedStatus'
+export { default as NotFound } from './mainPage/notFound'
 
 // icons
 export { default as Home } from "../imgs/h-i.svg"
@@ -44,3 +45,4 @@ export { default as success } from "../imgs/success.svg"
 export { default as error } from "../imgs/error.svg"
 export { default as check } from "../imgs/check.svg"
 export { default as lock } from '../imgs/lock.svg'
+export { default as notfound } from '../imgs/notfound.gif'
