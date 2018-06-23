@@ -18,6 +18,7 @@ export { default as FinishForm } from "./createProject/finishForm"
 export { default as BackWrapper } from "./mainPage/backWrapper"
 export { default as LockedStatus } from './projectStatus/lockedStatus'
 export { default as NotFound } from './mainPage/notFound'
+export { default as ProjectStatus } from './projectStatus/projectStatus'
 
 // icons
 export { default as Home } from "../imgs/h-i.svg"
@@ -46,3 +47,7 @@ export { default as error } from "../imgs/error.svg"
 export { default as check } from "../imgs/check.svg"
 export { default as lock } from '../imgs/lock.svg'
 export { default as notfound } from '../imgs/notfound.gif'
+export { default as user } from '../imgs/man.svg'
+export { default as support } from '../imgs/support.svg'
+export { default as rightArrow } from '../imgs/right-arrow.svg'
+export { default as locked } from '../imgs/locked.svg'
