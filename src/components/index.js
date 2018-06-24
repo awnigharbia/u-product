@@ -19,6 +19,9 @@ export { default as BackWrapper } from "./mainPage/backWrapper"
 export { default as LockedStatus } from './projectStatus/lockedStatus'
 export { default as NotFound } from './mainPage/notFound'
 export { default as ProjectStatus } from './projectStatus/projectStatus'
+export { default as LoginPanel } from './admin/login/'
+export { default as AdminPanel } from './admin/panel/' 
+
 
 // icons
 export { default as Home } from "../imgs/h-i.svg"

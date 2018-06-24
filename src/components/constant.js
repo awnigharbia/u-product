@@ -6,6 +6,8 @@ import {
   LockedStatus,
   NotFound,
   ProjectStatus,
+  LoginPanel,
+  AdminPanel,
 } from '.'
 
 import Home from '../imgs/h-i.svg'
@@ -55,6 +57,18 @@ export const routes = [
     },
     {
       key:5,
+      path:'/admin',
+      exact:true,
+      component: () => <LoginPanel />,
+    },
+    {
+      key:7,
+      path:'/admin/panel',
+      exact:false,
+      component:() => <AdminPanel />
+    },
+    {
+      key:6,
       path:'*',
       exact:false,
       component:() => <NotFound />
