@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import {
-    Styles,
     logo,   
     beg,
     like,
@@ -38,7 +37,7 @@ export default class CreateProject extends Component {
 
     handleFoucs = e => {
         const id = e.target.id;
-        const {top, moves} = this.state
+        const { moves} = this.state
         
         this.setState({show: !this.state.show, currentState: select, top: `${moves[id]}px`})
     }
@@ -73,7 +72,7 @@ export default class CreateProject extends Component {
     }
 
     render() {
-        const {selectValue, top, show, email, city, un, password, lang, description, currentState} = this.state
+        const {selectValue, top, show, email, city, un, password,  description, currentState} = this.state
 
         return (
             <BackWrapper>

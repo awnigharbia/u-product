@@ -1,5 +1,5 @@
 import React from 'react'
-import {Styles} from '..'
+
 
 
 const BackWrapper = ({children}) => (

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
 import { NavBar, 
          logo, 
          Logo, 
-         Styles,
+         
          LeftSide,
          RightSide,
          FeaturesContainer,

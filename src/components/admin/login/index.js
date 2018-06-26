@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Styles, Link} from '../../'
+import {Link} from '../../'
 
 
 export default class LoginPanel extends Component {

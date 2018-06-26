@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {
-    Styles,
     BackWrapper,
     check,
     Link,
@@ -24,7 +23,7 @@ export default class FinishForm extends Component {
     }
 
     render() {  
-        const {value, copied, url} = this.state
+        const {value,  url} = this.state
 
         return (
             <BackWrapper>

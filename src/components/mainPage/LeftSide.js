@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Styles, LeftSideImg} from '..'
+import {LeftSideImg} from '..'
 
 
 export default class LeftSide extends Component {

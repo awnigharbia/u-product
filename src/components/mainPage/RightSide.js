@@ -1,5 +1,5 @@
 import React , {Component} from 'react'
-import {Style, 
+import { 
         Link, 
         RightArrow,
         beg,

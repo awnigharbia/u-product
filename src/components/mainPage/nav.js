@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import {
-    Styles,
-    Link,
     NavbarContainer
 } from '..'
 import { NavItems } from '../constant'

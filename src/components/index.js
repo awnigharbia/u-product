@@ -21,7 +21,10 @@ export { default as NotFound } from './mainPage/notFound'
 export { default as ProjectStatus } from './projectStatus/projectStatus'
 export { default as LoginPanel } from './admin/login/'
 export { default as AdminPanel } from './admin/panel/' 
-
+export { default as Nav } from './admin/panel/nav'
+export { default as Dashboard } from './admin/panel/dashboard/'
+export { default as Orders } from './admin/panel/orders/'
+export { default as Vistors } from './admin/panel/vistors'
 
 // icons
 export { default as Home } from "../imgs/h-i.svg"
