@@ -25,6 +25,10 @@ export { default as Nav } from './admin/panel/nav'
 export { default as Dashboard } from './admin/panel/dashboard/'
 export { default as Orders } from './admin/panel/orders/'
 export { default as Vistors } from './admin/panel/vistors'
+export { default as OrdersContainer } from './admin/panel/orders/ordersContainer'
+export { default as VistorsContainer } from './admin/panel/vistors/vistorsContainer'
+export { default as DashboardContainer } from './admin/panel/dashboard/dashboardContainer'
+export { default as Auth } from '../auth'
 
 // icons
 export { default as Home } from "../imgs/h-i.svg"

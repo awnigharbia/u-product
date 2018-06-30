@@ -12,7 +12,6 @@ export default class Project extends Component {
                         return <Route key={key} path={path} exact={exact} component={component}/> 
                     })
                 }
-                
             </Switch>
         )
     }

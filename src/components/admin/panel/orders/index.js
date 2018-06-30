@@ -1,75 +1,11 @@
 import React, {Component, Fragment} from 'react'
 import {Breadcrumb, Icon, Layout,Table, Input, Button} from 'antd'
+
 const {Content, Header} = Layout
-
-const data = [
-{
-  key: '1',
-  name: 'John Bron',
-  Email:'awni2009@hotmail.com',
-  Univ: 'Al-Azhar Univ',
-  City: 'Gaza',
-  Lang:'Javascript',
-  address: 'New York No. 1 Lake Park',
-  Bio:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
-},
-{
-    key: '2',
-    name: 'Awni Brown',
-    Email:'awni2009@hotmail.com',
-    Univ: 'Al-Azhar Univ',
-    City: 'Gaza',
-    Lang:'Javascript',
-    address: 'New York No. 1 Lake Park',
-    Bio:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
-},
-{
-    key: '3',
-    name: 'John Brown',
-    Email:'awni2009@hotmail.com',
-    Univ: 'Al-Azhar Univ',
-    City: 'Gaza',
-    Lang:'Javascript',
-    address: 'New York No. 1 Lake Park',
-    Bio:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
-},
-{
-    key: '4',
-    name: 'John Brown',
-    Email:'awni2009@hotmail.com',
-    Univ: 'Al-Azhar Univ',
-    City: 'Gaza',
-    Lang:'Javascript',
-    address: 'New York No. 1 Lake Park',
-    Bio:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
-},
-{
-    key: '5',
-    name: 'John Brown',
-    Email:'awni2009@hotmail.com',
-    Univ: 'Al-Azhar Univ',
-    City: 'Gaza',
-    Lang:'Javascript',
-    address: 'New York No. 1 Lake Park',
-    Bio:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
-},
-{
-    key: '6',
-    name: 'John Brown',
-    Email:'awni2009@hotmail.com',
-    Univ: 'Al-Azhar Univ',
-    City: 'Gaza',
-    Lang:'Javascript',
-    address: 'New York No. 1 Lake Park',
-    Bio:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
-},
-];
-
 
 export default class Orders extends Component {
     state = {
         filterDropdownVisible: false,
-        data,
         searchText: '',
         filtered: false,
       };
@@ -84,7 +20,7 @@ export default class Orders extends Component {
         this.setState({
           filterDropdownVisible: false,
           filtered: !!searchText,
-          data: data.map((record) => {
+          data: this.props.data.map((record) => {
             const match = record.name.match(reg);
             if (!match) {
               return null;
@@ -104,6 +40,8 @@ export default class Orders extends Component {
         });
       }
     render() {
+       
+  
         const columns = [
             {
             title: 'Name',
@@ -131,35 +69,42 @@ export default class Orders extends Component {
           }, 
           {
             title: 'Email',
-            dataIndex: 'Email',
-            key: 'Email',
+            dataIndex: 'email',
+            key: 'email',
           },
           {
             title: 'Lang',
-            dataIndex: 'Lang',
-            key: 'Lang',
+            dataIndex: 'project[0].lang',
+            key: 'project[0].lang',
           }, 
           {
             title: 'Univ',
-            dataIndex: 'Univ',
-            key: 'Univ',
+            dataIndex: 'uni',
+            key: 'uni',
           },
           {
             title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
+            dataIndex: 'city',
+            key: 'city',
             filters: [{
-              text: 'London',
-              value: 'London',
-            }, {
-              text: 'New York',
-              value: 'New York',
-            }],
-            onFilter: (value, record) => record.address.indexOf(value) === 0,
+              text: 'Gaza',
+              value: 'Gaza',
+            }, 
+        ],
+            onFilter: (value, record) => {
+              const city = record.city || " "
+              return city.indexOf(value) === 0
+            },
+          },
+          {
+            title: 'Action',
+            key: 'operation',
+            fixed: 'right',
+            width: 100,
+            render: ({key}) => <a href="/admin/">Open</a>,
           },
         ];
 
-        
         return (
             <Fragment>
             <Header style={{ display:'flex', flexDirection:'row',alignItems:'center', background: '#fff', padding: 0 }}>
@@ -176,10 +121,12 @@ export default class Orders extends Component {
                 </Breadcrumb.Item>
             </Breadcrumb>
             </Header>
-            <Content style={{ margin: '24px 16px 0' }}>
-                <Table columns={columns} loading={false}  expandedRowRender={record => <p style={{ margin: 0 }}>{record.Bio}</p>} dataSource={this.state.data} />
-            </Content>
+            <Content style={{ margin: '24px 16px 0' }}>        
+              <Table columns={columns} loading={this.props.loading} rowKey="id" expandedRowRender={record => record.project[0] !== undefined ?  <p style={{ margin: 0 }}>{record.project[0].description}</p> : "No Projects yet"} dataSource={this.props.data} />
+          </Content>
         </Fragment>
         )
     }
 }
+
+

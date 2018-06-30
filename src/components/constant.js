@@ -29,29 +29,34 @@ export const routes = [
       key:0,
       path:'/',
       exact:true,
+      private:false,
       component: () => <App />
     },
     {
       key:1,
       path:'/create-project',
       exact:false,
+      private:false,
       component:() => <CreateProject />
     },
     {
       key:2,
       path:'/finished',
+      private:true,
       exact:false,
       component:() => <FinishForm />
     },
     {
       key:3,
       path:'/project/project-status-locked',
+      private:false,
       exact:false,
       component:() => <LockedStatus />
     },
     {
       key:4,
       path:'/project/project-status',
+      private:true,
       exact:false,
       component:() => <ProjectStatus />
     },
@@ -59,17 +64,20 @@ export const routes = [
       key:5,
       path:'/admin',
       exact:true,
+      private:false,
       component: () => <LoginPanel />,
     },
     {
       key:7,
       path:'/admin/panel',
       exact:false,
+      private:false,
       component:() => <AdminPanel />
     },
     {
       key:6,
       path:'*',
+      private:false,
       exact:false,
       component:() => <NotFound />
     }
@@ -125,3 +133,5 @@ export const Languages = [
     icon:Php,
   }
 ]
+
+export const AUTH_TOKEN = 'auth-token'

@@ -2,22 +2,21 @@ import React, {Component, Fragment} from 'react'
 import {Breadcrumb, Icon, Layout,Table, Input, Button} from 'antd'
 const {Content, Header} = Layout
 
-const data = [
-{
-  key: '1',
-  IP: 'John Bron',
-  Browser:'awni2009@hotmail.com',
-  OS: 'Al-Azhar Univ',
-  address: 'New York No. 1 Lake Park',
-  user_agent:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
-},
-];
+// const data = [
+// {
+//   key: '1',
+//   IP: 'John Bron',
+//   Browser:'awni2009@hotmail.com',
+//   OS: 'Al-Azhar Univ',
+//   address: 'New York No. 1 Lake Park',
+//   user_agent:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
+// },
+// ];
 
 
 export default class Vistors extends Component {
     state = {
         filterDropdownVisible: false,
-        data,
         searchText: '',
         filtered: false,
       };
@@ -32,7 +31,7 @@ export default class Vistors extends Component {
         this.setState({
           filterDropdownVisible: false,
           filtered: !!searchText,
-          data: data.map((record) => {
+          data: this.props.data.map((record) => {
             const match = record.name.match(reg);
             if (!match) {
               return null;
@@ -55,8 +54,8 @@ export default class Vistors extends Component {
         const columns = [
             {
             title: 'IP',
-            dataIndex: 'IP',
-            key: 'IP',
+            dataIndex: 'ip',
+            key: 'ip',
             filterDropdown: (
               <div className="custom-filter-dropdown">
                 <Input
@@ -79,31 +78,28 @@ export default class Vistors extends Component {
           }, 
           {
             title: 'Browser',
-            dataIndex: 'Browser',
+            dataIndex: 'browser',
             key: 'Browser',
           },
           {
             title: 'OS',
-            dataIndex: 'OS',
+            dataIndex: 'os',
             key: 'OS',
           }, 
           {
             title: 'Date',
-            dataIndex: 'Date',
+            dataIndex: 'createdAt',
             key: 'Date',
           },
           {
             title: 'Address',
-            dataIndex: 'address',
+            dataIndex: 'city',
             key: 'address',
             filters: [{
-              text: 'London',
-              value: 'London',
-            }, {
-              text: 'New York',
-              value: 'New York',
+              text: 'Gaza',
+              value: 'Gaza',
             }],
-            onFilter: (value, record) => record.address.indexOf(value) === 0,
+            onFilter: (value, record) => record.city.indexOf(value) === 0,
           },
         ];
 
@@ -120,12 +116,12 @@ export default class Vistors extends Component {
                     <span>Panel</span>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                    Orders
+                    Vistors
                 </Breadcrumb.Item>
             </Breadcrumb>
             </Header>
             <Content style={{ margin: '24px 16px 0' }}>
-                <Table columns={columns} loading={false}  expandedRowRender={record => <p style={{ margin: 0 }}>{record.user_agent}</p>} dataSource={this.state.data} />
+                <Table columns={columns} loading={this.props.loading}  expandedRowRender={record => <p style={{ margin: 0 }}>{record.userAgent}</p>} dataSource={this.props.data} />
             </Content>
         </Fragment>
         )

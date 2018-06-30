@@ -83,7 +83,9 @@
   width: 20px;
   margin-right: 5px;
 }
-
+.mLogo img {
+  width:120px;
+}
 .logo {
   display: flex;
   flex-direction: row;
@@ -1045,7 +1047,7 @@
     border: 2px solid rgb(164, 178, 231);
 }
 
-.admin-login-wrapper .admin-login-container a {
+.admin-login-wrapper .admin-login-container button {
     text-decoration: none;
     text-align: center;
     padding:10px;
@@ -1061,7 +1063,7 @@
     transition: .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.admin-login-wrapper .admin-login-container a:hover {
+.admin-login-wrapper .admin-login-container button:hover {
     background-color: #6474b3;
 }
 
