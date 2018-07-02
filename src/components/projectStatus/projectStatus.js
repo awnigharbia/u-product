@@ -50,6 +50,15 @@ export default class ProjectStatus extends Component {
                            <div className="receiver">
                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus veritatis dicta sunt tempore blanditiis? Neque, incidunt maiores. Eum, dolore consequatur impedit tempora itaque suscipit veritatis similique neque alias perferendis ratione?</p>
                            </div>
+                           <div className="receiver">
+                               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus veritatis dicta sunt tempore blanditiis? Neque, incidunt maiores. Eum, dolore consequatur impedit tempora itaque suscipit veritatis similique neque alias perferendis ratione?</p>
+                           </div>
+                           <div className="receiver">
+                               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus veritatis dicta sunt tempore blanditiis? Neque, incidunt maiores. Eum, dolore consequatur impedit tempora itaque suscipit veritatis similique neque alias perferendis ratione?</p>
+                           </div>
+                           <div className="receiver">
+                               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus veritatis dicta sunt tempore blanditiis? Neque, incidunt maiores. Eum, dolore consequatur impedit tempora itaque suscipit veritatis similique neque alias perferendis ratione?</p>
+                           </div>
                         </div>
                         <div className="bottom-send">
                             <div className="bottom-wrapper">

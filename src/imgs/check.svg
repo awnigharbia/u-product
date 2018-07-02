@@ -10,7 +10,7 @@
       stroke: green;
       stroke-dashoffset: 745.74853515625;
       stroke-dasharray: 745.74853515625;
-      animation: dash 2.5s ease-out forwards infinite;
+      animation: dash 2.5s ease-out forwards 1;
     }
 
     @keyframes dash {

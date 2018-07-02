@@ -4,11 +4,13 @@ import {
     check,
     Link,
 } from '..'
+import {withRouter} from 'react-router-dom'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-export default class FinishForm extends Component {
+class FinishForm extends Component {
     state = {
-        url:'www.google.com',
+        url:'localhost:3001/project/' + this.props.match.params.id,
+        to:'/project/' + this.props.match.params.id,
         value:'Copy !',
     }
 
@@ -23,8 +25,8 @@ export default class FinishForm extends Component {
     }
 
     render() {  
-        const {value,  url} = this.state
-
+        const {value,  url, to} = this.state
+        
         return (
             <BackWrapper>
                 <div className="finished-form-wrapper">
@@ -37,10 +39,12 @@ export default class FinishForm extends Component {
                         <CopyToClipboard text={url} onCopy={this.onCopy}>
                             <button>{value}</button>
                         </CopyToClipboard>
-                        <Link to='project-status-locked'>View Status</Link>
+                        <Link to={to} >View Status</Link>
                     </div>
                 </div>
             </BackWrapper>
         )
     }
 }
+
+export default withRouter(FinishForm)

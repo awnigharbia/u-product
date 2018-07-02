@@ -3,26 +3,8 @@ import { Loader, success, error} from '..'
 
 const BtnContainer = Btn =>
     class extends Component {
-        state = {
-            state: 'Default'
-        }
-        
-        handleClick = e => {
-            this.setState({
-                state:'Loading',
-            }, () => {
-                this.timer = setTimeout(() => {
-                    this.setState({state:'Success'})
-                }, 1000)
-            })
-        }
-
-        componentWillUnmount() {
-            clearTimeout(this.timer)
-        }
-
         render()  {
-            return <Btn {...this.state} {...this} />
+            return <Btn {...this.props}/>
         }
     }
 
@@ -47,7 +29,7 @@ class BtnSwitch extends Component {
     }
 
     render() {
-         const {state:{state}} = this.props
+         const {state} = this.props
         
          return this.handleState(state);
     }
