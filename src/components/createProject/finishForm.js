@@ -24,6 +24,10 @@ class FinishForm extends Component {
         })
     }
 
+    componentWillUnmount() {
+        clearTimeout(this.timer)
+    }
+
     render() {  
         const {value,  url, to} = this.state
         

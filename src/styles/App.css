@@ -937,14 +937,14 @@
 }
 
 .support-wrapper .chat-wrapper .bottom-send .bottom-wrapper {
-  width: 80%;
+  width: 60%;
   box-shadow: 0px 0px 10px #b7bec5;
   border-radius: 3px;
-  padding: 6px 10px 6px 0px;
+  padding: 6px 0px 6px 0px;
 }
 
 .support-wrapper .chat-wrapper .bottom-send input[type="text"] {
-  padding: 10px 20px;
+  padding: 10px 0px;
   border: none;
   font-size: 16px;
   font-weight: 400;
@@ -984,22 +984,21 @@
   position: relative;
   background-color: #ececec;
   border-radius: 2px;
-  padding: 0px 10px;
+  padding: 5px 20px;
   margin: 10px 0px 10px 0px;
-  width: 50%;
+  max-width: 50%;
   font-size: 15px;
   margin-left: auto;
   box-shadow: 0px 0px 5px #ececec;
 }
 
 .support-wrapper .chat-wrapper .body-msgs .receiver {
-  
   position: relative;
   background-color: rgb(122, 144, 231);
   color: white;
   border-radius: 2px;
-  padding: 10px 10px;
-  width: 50%;
+  padding: 5px 10px;
+  max-width: 50%;
   margin: 10px 0px 10px 0px;
   font-size: 15px;
   margin-right: auto;

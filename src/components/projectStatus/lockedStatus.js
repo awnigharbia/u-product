@@ -15,10 +15,10 @@ class LockedStatus extends Component {
         email:'',
     }
     
-    _saveUserData = (token, id) => {
+    _saveUserData = async (token, id) => {
         const { history } = this.props;
-        Auth.authenticateUser(token);
-        history.push(`/project/${id}` );
+        await Auth.authenticateUser(token);
+        await history.push(`/project/${id}` );
     };
 
     handleChange = (input, {target: {value}}) => {
