@@ -18,7 +18,7 @@ export default class RightSide extends Component {
                         <div className="input-form-container">
                            <Link to="/create-project">Create Project</Link>
                            <h3>OR</h3>
-                           <Link to="/project/project-status-locked">LOGIN</Link>
+                           <Link to="/project/lock">LOGIN</Link>
                         </div>
                     </div>
                 </div>

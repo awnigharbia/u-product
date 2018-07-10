@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Layout, Avatar } from 'antd';
-import {Nav, DashboardContainer, OrdersContainer, VistorsContainer, Auth} from '../../'
+import {Nav, DashboardContainer, OrdersContainer, VistorsContainer, Auth,} from '../../'
 import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
 const { Sider } = Layout;
 
@@ -24,7 +24,7 @@ class AdminPanel extends Component {
                         <Route exact path='/admin/panel/'  render={
                            () => Auth.isAdmin() ? <DashboardContainer /> : <Redirect to="/admin/" />
                         } />
-                        <Route exact path='/admin/panel/orders/' render={
+                        <Route path='/admin/panel/orders/' render={
                             () => Auth.isAdmin() ? <OrdersContainer /> : <Redirect to="/admin/" />
                         } />
                         <Route exact path='/admin/panel/vistors/' render={

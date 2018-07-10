@@ -27,8 +27,6 @@ const renderRoutes = (data, isLoggedIn) => {
             render={props => {
               return React.createElement(item.component, {
                 ...props,
-                className: item.class,
-                icon: item.icon
               });
             }}
             key={item.path}
@@ -41,15 +39,11 @@ const renderRoutes = (data, isLoggedIn) => {
   };
 
 export default class Project extends Component {
-    state = {
-        isLoggedIn:Auth.isUserAuthenticated()
-    }
-
     render() {
        
         return (
             <Switch>
-                {renderRoutes(routes, this.state.isLoggedIn)}
+                {renderRoutes(routes, Auth.isUserAuthenticated())}
             </Switch>
         )
     }

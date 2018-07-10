@@ -1,63 +1,64 @@
-import React, {Component} from 'react'
-import { 
-        BackWrapper,
-        lock,
-        Auth
-    } from '..'
+import React, { Component } from 'react'
+import {
+    BackWrapper,
+    lock,
+    Auth
+} from '..'
 
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
 class LockedStatus extends Component {
     state = {
-        pass:'',
-        email:'',
+        pass: '',
+        email: '',
     }
-    
+
     _saveUserData = async (token, id) => {
         const { history } = this.props;
         await Auth.authenticateUser(token);
-        await history.push(`/project/${id}` );
+        await history.push(`/project/${id}`);
     };
 
-    handleChange = (input, {target: {value}}) => {
-        this.setState({[input]:value});
+    handleChange = (input, { target: { value } }) => {
+        this.setState({ [input]: value });
     }
 
     _confirm = async () => {
         const { email, pass } = this.state;
-    
+
         const result = await this.props
-          .loginMutation({
-            variables: {
-              email,
-              password:pass,
-            }
-          })
-          .then(
-            ({
-              data: {
-                login: {
-                  token,
-                  user: {project:{id}}
+            .loginMutation({
+                variables: {
+                    email,
+                    password: pass,
                 }
-              }
-            }) =>
-              this._saveUserData(token, id)
-          )
-          .catch(e => console.log(e));
+            })
+            .then(
+                ({
+                    data: {
+                        login: {
+                            token,
+                            user: { project: { id } }
+                        }
+                    }
+                }) =>
+                    this._saveUserData(token, id)
+            )
+            .catch(e => this.setState({error:"Login Faild"}));
     };
     render() {
-        const {pass, email} = this.state
+        const { pass, email, error } = this.state
 
         return (
             <BackWrapper>
                 <div className="lock-wrapper">
                     <img src={lock} alt={lock} />
                     <h3>Access your project status:</h3>
+                    {error && <span>{error}</span>}
                     <div className="input">
-                        <input type="email" value={email} onChange={(e) => this.handleChange('email', e)} placeholder='Please enter email..' autoFocus/>
+                        <input type="email" value={email} onChange={(e) => this.handleChange('email', e)} placeholder='Please enter email..' autoFocus />
                         <input type="password" value={pass} onChange={(e) => this.handleChange('pass', e)} placeholder='Please enter password..' />
                         <button onClick={this._confirm}>UN-LOCK</button>
                     </div>
@@ -80,5 +81,5 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-export default  withRouter(graphql(LOGIN_MUTATION, { name: "loginMutation" })(LockedStatus))
+export default withRouter(graphql(LOGIN_MUTATION, { name: "loginMutation" })(LockedStatus))
 

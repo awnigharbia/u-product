@@ -25,6 +25,7 @@ const middlewareAuthLink = new ApolloLink((operation, forward) => {
         authorization: authorizationHeader
       }
     })
+    
     return forward(operation)
   })
   
@@ -35,7 +36,7 @@ const wsLink = new WebSocketLink({
     options: {
       reconnect: true,
       connectionParams: {
-        authToken: Auth.getToken(),
+        Authorization: Auth.getToken(),
       }
     }
   })

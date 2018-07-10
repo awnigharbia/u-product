@@ -46,25 +46,35 @@ export const routes = [
     },
     { 
       path:'/admin',
-      exact:true,
+      exact:false,
       is_private:false,
       component: () => <LoginPanel />,
     },
     {
       path:'/admin/panel',
-      exact:false,
-      is_private:false,
+      exact:true,
+      is_private:true,
       component:() => <AdminPanel />
     },
     {
-      
+      path:'/admin/panel/orders',
+      exact:true,
+      is_private:true,
+      component:() => <AdminPanel />
+    },
+    {
+      path:'/admin/panel/vistors',
+      exact:true,
+      is_private:true,
+      component:() => <AdminPanel />
+    },
+    {
       path:'/finished/:id',
       is_private:true,
-      exact:false,
+      exact:true,
       component:() => <FinishForm />
     },
     {
-      
       path:'/project/:id',
       is_private:true,
       exact:false,

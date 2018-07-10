@@ -4,8 +4,8 @@ class Auth {
    *
    * @param {string} token
    */
-  static authenticateUser(token) {
-    localStorage.setItem("token", token);
+  static async authenticateUser(token) {
+    await localStorage.setItem("token", token)
   }
 
   /**
@@ -14,15 +14,15 @@ class Auth {
    * @param {Boolean} token
    */
   static setRole(admin) {
-    localStorage.setItem("role", admin);
+    return localStorage.setItem("role", admin);
   }
   /**
    * Check if a user is authenticated - check if a token is saved in Local Storage
    *
    * @returns {boolean}
    */
-  static isUserAuthenticated() {
-    return localStorage.getItem("token") !== null;
+  static async isUserAuthenticated() {
+    return await localStorage.getItem("token") !== null;
   }
 
   /**

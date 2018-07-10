@@ -2,17 +2,6 @@ import React, {Component, Fragment} from 'react'
 import {Breadcrumb, Icon, Layout,Table, Input, Button} from 'antd'
 const {Content, Header} = Layout
 
-// const data = [
-// {
-//   key: '1',
-//   IP: 'John Bron',
-//   Browser:'awni2009@hotmail.com',
-//   OS: 'Al-Azhar Univ',
-//   address: 'New York No. 1 Lake Park',
-//   user_agent:'New York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake ParkNew York No. 1 Lake Park'
-// },
-// ];
-
 
 export default class Vistors extends Component {
     state = {

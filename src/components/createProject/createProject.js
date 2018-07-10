@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import gql from "graphql-tag";
 import Auth from "../../auth";
 
@@ -18,12 +18,12 @@ import {
 } from "..";
 
 class CreateProject extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
 
-    
+
     this.state = {
-      selectValue:null,
+      selectValue: null,
       states: [beg, like, strong, clapping, positive],
       show: false,
       currentState: select,
@@ -40,16 +40,16 @@ class CreateProject extends Component {
       lang: "javascript",
       description: "",
       state: "Default",
-      projectState:"new",
-      error:"",
-  }
-};
+      projectState: "new",
+      error: "",
+    }
+  };
 
   handleBlur = () => {
     this.setState({ show: !this.state.show, currentState: select });
   };
 
-  handleFoucs = ({target:{id}}) => {
+  handleFoucs = ({ target: { id } }) => {
     const { moves } = this.state;
 
     this.setState({
@@ -70,11 +70,12 @@ class CreateProject extends Component {
     }, 1000);
   };
 
-  _saveUserData = (token) => {
+  _saveUserData = async (token, id) => {
     const { history } = this.props;
-
-    Auth.authenticateUser(token);
-    this.setState({state:"Success"});
+    const link = `/finished/${id}`
+    
+    await Auth.authenticateUser(token);
+    history.push(link)
   };
 
   handleChange = (input, e) => {
@@ -118,23 +119,19 @@ class CreateProject extends Component {
           project: {
             name: projectName,
             description,
-            lang:selectValue,
-            state:projectState,
+            lang: selectValue,
+            state: projectState,
           }
         }
       })
-      .then(({data:{signup:{token, user:{project:{id}}}}}) => {
-        const { history } = this.props
-        
-        const link = "/finished/" + id
-        this._saveUserData(token)
-        history.push(link);
+      .then(({ data: { signup: { token, user: { project: { id } } } } }) => {
+        this._saveUserData(token, id);
       })
-      .catch(e => this.setState({error:"Error with Signup"}));
+      .catch(e => this.setState({ error: "Error with Signup" }));
   };
 
   handleValue = lang => {
-    this.setState({selectValue:lang})
+    this.setState({ selectValue: lang })
   }
 
   componentDidMount() {
@@ -171,8 +168,8 @@ class CreateProject extends Component {
             </div>
           )}
           {
-            error !== '' && 
-              <ErrorMsg msg={error}  />
+            error !== '' &&
+            <ErrorMsg msg={error} />
           }
           <Input
             type="text"
@@ -281,6 +278,6 @@ const NEWPROJ_MUTATION = gql`
   }
 `;
 
-const ErrorMsg = ({msg, className}) => <div className="error-msg">{msg}</div>
+const ErrorMsg = ({ msg, className }) => <div className="error-msg">{msg}</div>
 
 export default withRouter(graphql(NEWPROJ_MUTATION, { name: "newProject" })(CreateProject));
