@@ -9,29 +9,48 @@ class Auth {
   }
 
   /**
-   * Authenticate a user. Save a token string in Local Storage
+   * Authenticate a user. Save a role string in Local Storage
    *
    * @param {Boolean} token
    */
-  static setRole(admin) {
-    return localStorage.setItem("role", admin);
+  static async setRole(admin) {
+    await localStorage.setItem("role", admin);
   }
+
+  /**
+   * Save the project id
+   *
+   * @param {Boolean} token
+   */
+  static async saveProjectId(id) {
+    await localStorage.setItem("project", id);
+  }
+
+  /**
+   * get UserId
+   *
+   */
+  static getProjectId() {
+    return localStorage.getItem("project");
+  }
+
   /**
    * Check if a user is authenticated - check if a token is saved in Local Storage
    *
    * @returns {boolean}
    */
-  static async isUserAuthenticated() {
-    return await localStorage.getItem("token") !== null;
+  static isUserAuthenticated() {
+    return  localStorage.getItem("token") !== null;
   }
 
   /**
-   * Deauthenticate a user. Remove a token from Local Storage.
+   * Deauthenticate a user. Remove a token, role, project from Local Storage.
    *
    */
   static deauthenticateUser() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("project");
   }
 
   /**
@@ -45,7 +64,7 @@ class Auth {
   }
 
   /**
-   * Get a admin value.
+   * Check if the user is Admin
    *
    * @returns {string}
    */

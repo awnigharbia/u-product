@@ -5,7 +5,7 @@ import {
     Auth
 } from '..'
 
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -18,7 +18,8 @@ class LockedStatus extends Component {
     _saveUserData = async (token, id) => {
         const { history } = this.props;
         await Auth.authenticateUser(token);
-        await history.push(`/project/${id}`);
+        await Auth.saveProjectId(id);
+        return history.push(`/project/${id}`)
     };
 
     handleChange = (input, { target: { value } }) => {
@@ -46,7 +47,7 @@ class LockedStatus extends Component {
                 }) =>
                     this._saveUserData(token, id)
             )
-            .catch(e => this.setState({error:"Login Faild"}));
+            .catch(e => this.setState({ error: "Login Faild" }));
     };
     render() {
         const { pass, email, error } = this.state

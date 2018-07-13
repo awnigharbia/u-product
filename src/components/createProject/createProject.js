@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import gql from "graphql-tag";
-import Auth from "../../auth";
 
 import {
   beg,
@@ -14,8 +13,11 @@ import {
   positive,
   SelectLang,
   BtnContainer,
-  BackWrapper
+  BackWrapper,
+  Auth,
+  schema,
 } from "..";
+
 
 class CreateProject extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class CreateProject extends Component {
 
 
     this.state = {
-      selectValue: null,
+      selectValue: "",
       states: [beg, like, strong, clapping, positive],
       show: false,
       currentState: select,
@@ -37,11 +39,10 @@ class CreateProject extends Component {
       uni: "",
       password: "",
       admin: false,
-      lang: "javascript",
       description: "",
       state: "Default",
       projectState: "new",
-      error: "",
+      errors: [],
     }
   };
 
@@ -73,8 +74,9 @@ class CreateProject extends Component {
   _saveUserData = async (token, id) => {
     const { history } = this.props;
     const link = `/finished/${id}`
-    
+   
     await Auth.authenticateUser(token);
+    await Auth.saveProjectId(id);
     history.push(link)
   };
 
@@ -98,36 +100,49 @@ class CreateProject extends Component {
       password,
       name,
       projectName,
-      lang,
       projectState,
       description,
       selectValue,
       city,
       uni,
-      admin
+      admin,
     } = this.state;
 
-    const result = await this.props
-      .newProject({
-        variables: {
-          email,
-          password,
-          city,
-          uni,
-          name,
-          admin,
-          project: {
-            name: projectName,
-            description,
-            lang: selectValue,
-            state: projectState,
+    schema.validate({
+      email,
+      password,
+      name,
+      projectName,
+      lang: selectValue,
+      description,
+      city,
+      uni,
+    })
+      .then(() => this.props
+        .newProject({
+          variables: {
+            email,
+            password,
+            city,
+            uni,
+            name,
+            admin,
+            project: {
+              name: projectName,
+              description,
+              lang: selectValue,
+              state: projectState,
+            }
           }
-        }
-      })
-      .then(({ data: { signup: { token, user: { project: { id } } } } }) => {
-        this._saveUserData(token, id);
-      })
-      .catch(e => this.setState({ error: "Error with Signup" }));
+        })
+        .then(({ data: { signup: { token, user: { project: { id } } } } }) => {
+          this._saveUserData(token, id);
+        })
+        .catch(e => this.setState({ error: "Error with Signup" }))
+      )
+      .catch(e => this.setState({ errors: e.errors }))
+
+
   };
 
   handleValue = lang => {
@@ -143,6 +158,7 @@ class CreateProject extends Component {
   }
 
   render() {
+    
     const {
       selectValue,
       top,
@@ -156,7 +172,7 @@ class CreateProject extends Component {
       projectName,
       name,
       state,
-      error,
+      errors,
     } = this.state;
 
     return (
@@ -168,8 +184,7 @@ class CreateProject extends Component {
             </div>
           )}
           {
-            error !== '' &&
-            <ErrorMsg msg={error} />
+            errors.length !== 0 && errors.map((i, key) => <ErrorMsg key={key} msg={i} />)
           }
           <Input
             type="text"
@@ -278,6 +293,6 @@ const NEWPROJ_MUTATION = gql`
   }
 `;
 
-const ErrorMsg = ({ msg, className }) => <div className="error-msg">{msg}</div>
+const ErrorMsg = ({ msg }) => <div className="error-msg">{msg}</div>
 
 export default withRouter(graphql(NEWPROJ_MUTATION, { name: "newProject" })(CreateProject));

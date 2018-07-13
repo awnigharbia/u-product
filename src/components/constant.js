@@ -8,8 +8,9 @@ import {
   ProjectStatus,
   LoginPanel,
   AdminPanel,
+  AlreadyLogged
 } from '.'
-
+import Auth from '../auth'
 import Home from '../imgs/h-i.svg'
 import HowTo from '../imgs/i-i.svg'
 import ActiveHowTo from '../imgs/i-i-a.svg'
@@ -23,119 +24,121 @@ import Done from '../imgs/do-i.svg'
 import Js from '../imgs/js-i.svg'
 import Php from '../imgs/php-i.svg'
 
+// declaring id , isLogged 
+const id = Auth.getProjectId();
+const isLogged = Auth.isUserAuthenticated();
 
 export const routes = [
-    {
-      
-      path:'/',
-      exact:true,
-      is_private:false,
-      component: () => <App />
-    },
-    {
-      path:'/create-project',
-      exact:false,
-      is_private:false,
-      component:() => <CreateProject />
-    },
-    {
-      path:'/project/lock/',
-      exact:false,
-      is_private:false,
-      component:() => <LockedStatus />
-    },
-    { 
-      path:'/admin',
-      exact:false,
-      is_private:false,
-      component: () => <LoginPanel />,
-    },
-    {
-      path:'/admin/panel',
-      exact:true,
-      is_private:true,
-      component:() => <AdminPanel />
-    },
-    {
-      path:'/admin/panel/orders',
-      exact:true,
-      is_private:true,
-      component:() => <AdminPanel />
-    },
-    {
-      path:'/admin/panel/vistors',
-      exact:true,
-      is_private:true,
-      component:() => <AdminPanel />
-    },
-    {
-      path:'/finished/:id',
-      is_private:true,
-      exact:true,
-      component:() => <FinishForm />
-    },
-    {
-      path:'/project/:id',
-      is_private:true,
-      exact:false,
-      component:() => <ProjectStatus />
-    },
-    {
-      path:'*',
-      is_private:false,
-      exact:false,
-      component:() => <NotFound />
-    },
-  ]
-  
+  {
+    path: '/',
+    exact: true,
+    is_private: false,
+    component: () => isLogged ? <AlreadyLogged link={id} /> : <App />
+  },
+  {
+    path: '/create-project',
+    exact: false,
+    is_private: false,
+    component: () => isLogged ? <AlreadyLogged link={id} /> : <CreateProject />
+  },
+  {
+    path: '/project/lock/',
+    exact: false,
+    is_private: false,
+    component: () => isLogged ? <AlreadyLogged link={id} /> : <LockedStatus />
+  },
+  {
+    path: '/admin',
+    exact: true,
+    is_private: true,
+    component: () => <LoginPanel />,
+  },
+  {
+    path: '/admin/panel',
+    exact: true,
+    is_private: true,
+    component: () => <AdminPanel />
+  },
+  {
+    path: '/admin/panel/orders',
+    exact: true,
+    is_private: true,
+    component: () => <AdminPanel />
+  },
+  {
+    path: '/admin/panel/vistors',
+    exact: true,
+    is_private: true,
+    component: () => <AdminPanel />
+  },
+  {
+    path: '/finished/:id',
+    exact: true,
+    is_private: true,
+    component: () => <FinishForm />
+  },
+  {
+    path: '/project/:id',
+    exact: false,
+    is_private: true,
+    component: () => <ProjectStatus />
+  },
+  {
+    path: '*',
+    exact: false,
+    is_private: false,
+    component: () => <NotFound />
+  },
+]
+
 export const NavItems = [
   {
-    name:'Home',
-    icon:Home,
-    activeIcon:ActiveHome,
-    link:'/',
+    name: 'Home',
+    icon: Home,
+    activeIcon: ActiveHome,
+    link: '/',
   },
   {
-    name:'Languages',
-    icon:Coding,
-    activeIcon:ActiveCoding,
-    link:'/#languages',
+    name: 'Languages',
+    icon: Coding,
+    activeIcon: ActiveCoding,
+    link: '/#languages',
   },
   {
-    name:'About',
-    icon:HowTo,
-    activeIcon:ActiveHowTo,
-    link:'/about',
+    name: 'About',
+    icon: HowTo,
+    activeIcon: ActiveHowTo,
+    link: '/about',
   },
 ]
 
 export const Features = [
   {
-    name:'Create Project',
-    icon:CreateP,
+    name: 'Create Project',
+    icon: CreateP,
   },
   {
-    name:'Make a Deal',
+    name: 'Make a Deal',
     icon: MDeal,
   },
   {
-    name:'Handy Costs',
+    name: 'Handy Costs',
     icon: PayIcon,
   },
   {
-    name:'Project Finished',
-    icon:Done,
+    name: 'Project Finished',
+    icon: Done,
   },
 ]
 
 export const Languages = [
   {
-    name:'Javascript',
-    icon:Js,
+    name: 'Javascript',
+    icon: Js,
   },
   {
-    name:'PHP',
-    icon:Php,
+    name: 'PHP',
+    icon: Php,
   }
 ]
 

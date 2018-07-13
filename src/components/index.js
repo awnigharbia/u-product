@@ -29,6 +29,8 @@ export { default as OrdersContainer } from './admin/panel/orders/ordersContainer
 export { default as VistorsContainer } from './admin/panel/vistors/vistorsContainer'
 export { default as DashboardContainer } from './admin/panel/dashboard/dashboardContainer'
 export { default as Auth } from '../auth'
+export { default as schema } from '../components/createProject/validationShema'
+export { default as AlreadyLogged} from './projectStatus/alreadyLogged'
 
 // icons
 export { default as Home } from "../imgs/h-i.svg"

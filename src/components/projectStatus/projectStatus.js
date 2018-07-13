@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BackWrapper, user, support, rightArrow, locked, Auth } from "..";
+import { user, support, rightArrow, locked, Auth } from "..";
 import { withRouter } from "react-router-dom";
 import { graphql, compose, withApollo } from "react-apollo";
 import gql from "graphql-tag";
@@ -13,6 +13,8 @@ class ProjectStatus extends Component {
     this.state = {
       msg: "",
       result: [],
+      first: 15,
+      skip: 0,
     };
   }
 
@@ -24,14 +26,15 @@ class ProjectStatus extends Component {
     key === 'Enter' ? this._sendMsg() : false
   }
 
-  _logout = () => {
+  _logout = async () => {
     const { history } = this.props;
-    Auth.deauthenticateUser();
-    history.push("/project/lock");
+    await Auth.deauthenticateUser();
+    await history.push("/project/lock");
   };
 
   _subscribeToNewMessages = () => {
     const email = this.props.location.state ? this.props.location.state.email : 'support@support.com'
+
     this.props.getMsgs.subscribeToMore({
       document: gql`
         subscription ($filter:String) {
@@ -49,11 +52,11 @@ class ProjectStatus extends Component {
           }
         }
       `,
-      variables: {filter:email},
+      variables: { filter: email },
       updateQuery: (previous, { subscriptionData }) => {
-        const newAllMsgs = [...this.state.result, subscriptionData.data.newMsg.node,]
+        const newAllMsgs = [subscriptionData.data.newMsg.node, ...this.state.result]
 
-        return  this.setState({result:newAllMsgs})
+        return this.setState({ result: newAllMsgs })
       }
     });
   };
@@ -62,10 +65,6 @@ class ProjectStatus extends Component {
     this.messagesEnd.scrollIntoView({ behavior: "auto" });
   }
 
-
-  componentDidUpdate() {
-    this.scrollToBottom();
-  }
 
   _sendMsg = async () => {
     const { msg } = this.state;
@@ -86,26 +85,53 @@ class ProjectStatus extends Component {
       .catch(e => this.setState({ success: false }));
   };
 
-  _getMsgs = async () => {
-   
+  _getMsgs = async (first = 15, skip = 0) => {
+
     const email = this.props.location.state ? this.props.location.state.email : 'support@support.com'
-    
+
     const result = await this.props.client.query({
       query: getMsg,
-      variables: {filter:email},
+      variables: {
+        filter: email,
+        first,
+        skip,
+      },
     })
 
-    this.setState({result:result.data.msg})
-  }
-
-  componentDidMount() {
-    this._getMsgs();
-    this._subscribeToNewMessages()
+    this.setState({ result: result.data.msg })
     this.scrollToBottom();
   }
 
+  _loadMore = async (first = 15, skip) => {
+    const email = this.props.location.state ? this.props.location.state.email : 'support@support.com'
+
+    const result = await this.props.client.query({
+      query: getMsg,
+      variables: {
+        filter: email,
+        first,
+        skip,
+      },
+    })
+
+    this.setState({ result: [...this.state.result, ...result.data.msg] })
+  }
+
+  _handleScroll = e => {
+    const top = e.target.scrollTop === 0
+    if (top) {
+      this.setState({ skip: this.state.skip + 15 }, () => this._loadMore(this.state.first, this.state.skip))
+    }
+  }
+
+  componentDidMount() {
+    const { first, skip } = this.state
+    this._getMsgs(first, skip);
+    this._subscribeToNewMessages()
+  }
+
   componentWillUnmount() {
-    this.setState({result:''})
+    this.setState({ result: '' })
   }
   render() {
     const {
@@ -134,7 +160,7 @@ class ProjectStatus extends Component {
           <h4>{!loading ? currentUser[0].name : "loading.."}</h4>
           {roles.map((item, key) => <InfoRole key={key} {...item} />)}
           <div id="locked" onClick={this._logout}>
-            <img src={locked} alt={locked}  />
+            <img src={locked} alt={locked} />
             <span>Logout</span>
           </div>
         </div>
@@ -143,10 +169,10 @@ class ProjectStatus extends Component {
             <img src={support} alt={support} id="user-img" />
             <h4>Support</h4>
           </div>
-          <div className="body-msgs-container">
+          <div className="body-msgs-container" onScroll={this._handleScroll}>
             <div className="body-msgs">
               {
-                result && result.map(({ body, send }, key) => send ? <div key={key} className="sender">{body}</div> : <div key={key} className="receiver">{body}</div>)
+                result && result.map(({ body, send }, key) => send ? <div key={key} className="sender">{body}</div> : <div key={key} className="receiver">{body}</div>).reverse()
               }
               <div style={{ float: "left", clear: "both" }}
                 ref={(el) => { this.messagesEnd = el; }}>
@@ -207,8 +233,8 @@ const NewMsg = gql`
 `;
 
 const getMsg = gql`
-query ($filter:String) {
-  msg (filter:$filter){
+query ($filter:String, $first:Int, $skip:Int) {
+  msg (filter:$filter, first:$first, skip:$skip, orderBy:createdAt_DESC){
     body
     send
     sender {

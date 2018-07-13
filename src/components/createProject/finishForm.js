@@ -9,7 +9,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 class FinishForm extends Component {
     state = {
-        url:'localhost:3001/project/' + this.props.match.params.id,
+        url:'https://fast-coast-99728.herokuapp.com/project/' + this.props.match.params.id,
         to:'/project/' + this.props.match.params.id,
         value:'Copy !',
     }
