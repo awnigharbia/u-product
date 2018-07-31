@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {Styles} from './imports'
-import {Features} from './constant'
+
+import {Features} from '../constant'
 
 
 export default class FeaturesContainer extends Component {
